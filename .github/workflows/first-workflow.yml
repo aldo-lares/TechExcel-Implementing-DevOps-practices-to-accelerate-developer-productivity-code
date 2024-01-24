@@ -6,7 +6,8 @@ on:
     types: [opened]
 
 env:
-  STEPONE_VAR: STEPONE
+  STEP_VAR: STEP
+  MSG: Mooo!
 
 jobs:
   job1:
@@ -14,9 +15,9 @@ jobs:
 
     steps:
     - name: Step one
-      run: echo "$STEPONE_VAR!!"
+      run: echo "$STEP_VAR one !!"
     - name: Step two
-      run: echo "Step two!!"
+      run: echo "$STEP_VAR two !!"
       
   job2:
     needs: job1
@@ -26,5 +27,5 @@ jobs:
     - name: Cowsays
       uses: mscoutermarsh/cowsays-action@master
       with:
-        text: 'Ready for prod-ship it!'
+        text: '$MSG'
         color: 'cyan'
