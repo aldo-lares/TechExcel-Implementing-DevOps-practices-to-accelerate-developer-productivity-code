@@ -7,7 +7,7 @@ on:
 
 env:
   STEP_VAR: STEP
-  MSG: Mooo!
+  MSG: MOO!
 
 jobs:
   job1:
@@ -27,5 +27,5 @@ jobs:
     - name: Cowsays
       uses: mscoutermarsh/cowsays-action@master
       with:
-        text: '$MSG'
+        text: '${{ ENV.MSG }}'
         color: 'cyan'
