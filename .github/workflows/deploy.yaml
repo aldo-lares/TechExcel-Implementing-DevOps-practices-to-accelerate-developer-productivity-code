@@ -12,6 +12,13 @@ jobs:
       steps:
       # Checkout code
       - uses: actions/checkout@main
+
+      - name: Validate secrets
+        run: |
+          echo ${{ secrets.AZURE_CLIENT_ID }}
+          echo ${{ secrets.AZURE_TENANT_ID }}
+          echo ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          echo ${{ secrets.AZURE_RG }}
   
         # Log into Azure
       - uses: azure/login@v1
