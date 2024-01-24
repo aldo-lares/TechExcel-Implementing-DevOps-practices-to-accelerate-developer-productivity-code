@@ -5,13 +5,16 @@ on:
   issues:
     types: [opened]
 
+env:
+  STEPONE_VAR: STEPONE
+
 jobs:
   job1:
     runs-on: ubuntu-latest
 
     steps:
     - name: Step one
-      run: echo "Step One!!"
+      run: echo "$STEPONE_VAR!!"
     - name: Step two
       run: echo "Step two!!"
       
