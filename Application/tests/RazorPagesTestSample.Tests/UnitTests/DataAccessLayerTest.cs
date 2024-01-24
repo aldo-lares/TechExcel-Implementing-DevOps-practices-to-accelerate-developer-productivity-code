@@ -9,6 +9,31 @@ namespace RazorPagesTestSample.Tests.UnitTests
 {
     public class DataAccessLayerTest
     {
+        [Theory]
+        [InlineData(150, true)]
+        [InlineData(199, true)]
+        [InlineData(200, true)]
+        [InlineData(201, true)]
+        [InlineData(249, true)]
+        [InlineData(250, true)]
+        [InlineData(251, true)]
+        [InlineData(300, true)]
+        public async Task AddMessageAsync_TestMessageLength(int messageLength, bool expected)
+        {
+            using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
+            {
+                // Arrange
+                var recId = 10;
+                var message = new Message() {Id = recId, Text = new string('X', messageLength) };
+
+                // Act
+                var isValidMessage = Validator.TryValidateObject(expected, new System.ComponentModel.DataAnnotations.ValidationContext(message), null, validateAllProperties: true);
+
+                // Assert
+                Assert.Equal(expected, isValidMessage);
+            }
+        }
+
         [Fact]
         public async Task GetMessagesAsync_MessagesAreReturned()
         {
